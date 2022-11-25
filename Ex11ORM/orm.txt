@@ -1,0 +1,22 @@
+ORM(Object Relational Mapping : 객체-관계 매핑)
+:Object(model) - Relational(관계형 데이터베이스)
+-> 자동으로 연결(매핑)
+
+ex) node - Sequelize
+    spring - JPA
+
+1. Sequelize 설치
+> npm install -g sequelize
+> npm i -g sequelize-cli
+
+2. sequelize 초기화
+> npx sequelize init
+config : DB 연결에 필요한 정보
+migrations : DB 변동 기록 담은 파일 보관(이전 설정으로 되돌릴 때)
+models : 테이블에 대한 객체
+seeders : 테이블에 자동으로 기본 데이터 넣고 싶을때
+
+3. config.js 수정 : dev
+
+
+

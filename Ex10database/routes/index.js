@@ -39,4 +39,50 @@ router.post("/insert", (req, res) => {
   });
 });
 
+// 특정회원 정보 조회
+router.get("/select/:id", (req, res) => {
+  let id = req.params.id;
+
+  let sql = "select * from member where id=?";
+
+  conn.query(sql, [id], function (err, rows, fields) {
+    console.log(rows);
+    console.log(fields);
+    if (err) {
+      console.error("select 실행 실패!" + err);
+    } else {
+      res.json({ listone: rows });
+    }
+  });
+});
+
+// 회원 삭제
+router.get("/delete/:id", (req, res) => {
+  let id = req.params.id;
+  let sql = "delete from member where id=?";
+
+  conn.query(sql, [id], function (err, rows, fields) {
+    if (err) {
+      console.log("delete 실행 실패!" + err);
+    } else {
+      res.redirect("/select");
+    }
+  });
+});
+
+// 회원 정보 수정
+router.post("/update", (req, res) => {
+  // post방식은 req.body에서 꺼내오기
+  let { id, pw, nick } = req.body;
+  let sql = "update member set pw=?, nick=? where id=?";
+
+  conn.query(sql, [pw, nick, id], function (err, rows, fields) {
+    if (err) {
+      console.log("update 실행 실패!" + err);
+    } else {
+      res.redirect("/select");
+    }
+  });
+});
+
 module.exports = router;
